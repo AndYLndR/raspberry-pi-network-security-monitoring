@@ -519,7 +519,7 @@ A more production-oriented design would use two independent DNS resolvers so tha
 
 ---
 
-## Related Project
+## Related Project ⭐
 
 This project complements a separate **Home Cyber Range & Mini SOC Lab** focused on:
 
