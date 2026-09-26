@@ -1,6 +1,28 @@
 # Raspberry Pi Network Security & Monitoring
 
+<p align="left">
+  <img src="https://img.shields.io/badge/Platform-Raspberry%20Pi%205-C51A4A?logo=raspberrypi&logoColor=white" alt="Raspberry Pi 5">
+  <img src="https://img.shields.io/badge/OS-Debian%2013-A81D33?logo=debian&logoColor=white" alt="Debian 13">
+  <img src="https://img.shields.io/badge/Architecture-ARM64-0091BD" alt="ARM64">
+  <img src="https://img.shields.io/badge/Containerized-Docker-2496ED?logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/Monitoring-Prometheus%20%2B%20Grafana-F46800?logo=grafana&logoColor=white" alt="Prometheus and Grafana">
+  <img src="https://img.shields.io/badge/Security-DNS%20%7C%20SSH%20%7C%20Firewall-2EA44F" alt="Security">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
+</p>
+
 A Raspberry Pi 5-based home network security and observability platform combining DNS filtering, device discovery, service monitoring, infrastructure metrics, dashboards, Linux hardening, Docker and network access controls.
+
+## Key Features
+
+- **DNS Security** — Pi-hole filtering for ads, trackers and unwanted domains with DNS query visibility.
+- **Asset Visibility** — NetAlertX device discovery and LAN inventory using ARP-based scanning.
+- **Service Monitoring** — Uptime Kuma checks the availability of critical network services.
+- **Host Observability** — Prometheus + Node Exporter collect CPU, RAM, storage, uptime, network, temperature and fan metrics.
+- **Custom Dashboards** — Grafana visualizes Raspberry Pi health using manually written PromQL queries.
+- **Linux Hardening** — ED25519 SSH keys, disabled password login, restricted root access and reduced unnecessary services.
+- **Network Access Control** — Custom firewall rules limit LAN exposure and keep backend services internal where possible.
+- **Dockerized Deployment** — Reproducible services with persistent volumes and internal Docker networking.
+- **Recovery Ready** — Validated backups, persistent application data and SHA256 integrity verification.
 
 ![Grafana Dashboard](screenshots/grafana/raspberry-pi-overview.png)
 
@@ -512,3 +534,19 @@ This project complements a separate **Home Cyber Range & Mini SOC Lab** focused 
 - incident investigation
 
 The Raspberry Pi project focuses instead on network visibility, DNS security, infrastructure monitoring, Linux administration, Docker, availability and system hardening.
+
+---
+
+## Acknowledgements and Learning Resources 📖
+
+This project was designed, built, configured, tested, and documented by me as a hands-on cybersecurity learning project.
+
+During its development, I used a combination of official documentation, technical tutorials, open-source repositories, community resources, and AI-assisted guidance to support troubleshooting, research, configuration, and documentation.
+
+All implementation decisions, lab configuration, testing, validation, analysis, and final documentation were reviewed and carried out by me within my own controlled environment.
+
+
+---
+
+**14nd3r**  
+*Gracias por tu tiempo — Thanks for your time.*
