@@ -1,0 +1,22 @@
+services:
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:2
+    restart: unless-stopped
+
+    ports:
+      - "192.168.1.36:3001:3001"
+
+    volumes:
+      - uptime-kuma-data:/app/data
+
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    external: true
+
+volumes:
+  uptime-kuma-data:
+    name: uptime-kuma-data

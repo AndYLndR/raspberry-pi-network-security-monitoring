@@ -1,0 +1,13 @@
+[Unit]
+Description=Raspberry Pi Security Firewall Rules
+Documentation=man:iptables(8)
+Wants=network-online.target docker.service
+After=network-online.target docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/rpi-firewall.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

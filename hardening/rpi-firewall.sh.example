@@ -1,0 +1,38 @@
+#!/bin/sh
+set -eu
+
+IPT="/usr/sbin/iptables"
+LAN_IF="eth0"
+LAN_NET="192.168.1.0/24"
+
+$IPT -N RPI-HOST-IN 2>/dev/null || true
+$IPT -F RPI-HOST-IN
+
+$IPT -C INPUT -i "$LAN_IF" -j RPI-HOST-IN 2>/dev/null || \
+    $IPT -I INPUT 1 -i "$LAN_IF" -j RPI-HOST-IN
+
+$IPT -A RPI-HOST-IN -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+$IPT -A RPI-HOST-IN -s "$LAN_NET" -p icmp -j ACCEPT
+$IPT -A RPI-HOST-IN -s "$LAN_NET" -p tcp --dport 22 -j ACCEPT
+
+$IPT -A RPI-HOST-IN \
+    -s "$LAN_NET" \
+    -p tcp \
+    -m multiport \
+    --dports 53,3000,3001,8080,20211 \
+    -j ACCEPT
+
+$IPT -A RPI-HOST-IN -s "$LAN_NET" -p udp --dport 53 -j ACCEPT
+$IPT -A RPI-HOST-IN -j DROP
+
+if $IPT -nL DOCKER-USER >/dev/null 2>&1; then
+    $IPT -N RPI-DOCKER-IN 2>/dev/null || true
+    $IPT -F RPI-DOCKER-IN
+
+    $IPT -C DOCKER-USER -i "$LAN_IF" -j RPI-DOCKER-IN 2>/dev/null || \
+        $IPT -I DOCKER-USER 1 -i "$LAN_IF" -j RPI-DOCKER-IN
+
+    $IPT -A RPI-DOCKER-IN -m conntrack --ctstate ESTABLISHED,RELATED -j RETURN
+    $IPT -A RPI-DOCKER-IN -s "$LAN_NET" -j RETURN
+    $IPT -A RPI-DOCKER-IN -j DROP
+fi

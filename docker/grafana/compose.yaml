@@ -1,0 +1,22 @@
+services:
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:13.2.2
+    restart: unless-stopped
+
+    ports:
+      - "192.168.1.36:3000:3000"
+
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    external: true
+
+volumes:
+  grafana-data:
+    name: grafana-data

@@ -1,0 +1,28 @@
+# Secrets / environment
+.env
+*.env
+!.env.example
+
+# Private keys / certificates
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Private backups
+backups/
+*.bak
+*.backup
+*.tar
+*.tar.gz
+
+# Runtime/generated data
+data/
+logs/
+tmp/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
